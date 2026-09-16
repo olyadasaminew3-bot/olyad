@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoultryHealth Pro - Smart Poultry Health Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader">
+            <i class="fas fa-egg"></i>
+            <p>Loading PoultryHealth Pro...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-feather-alt"></i>
+                <span>PoultryHealth <strong>Pro</strong></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#disease-checker">Disease Checker</a></li>
+                <li><a href="#vaccination">Vaccination</a></li>
+                <li><a href="#flock">Flock Manager</a></li>
+                <li><a href="#feed">Feed Planner</a></li>
+                <li><a href="#tips">Health Tips</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn-emergency" id="emergencyBtn">
+                    <i class="fas fa-exclamation-triangle"></i> Emergency
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-animation">
+            <div class="floating-icon fi-1"><i class="fas fa-egg"></i></div>
+            <div class="floating-icon fi-2"><i class="fas fa-drumstick-bite"></i></div>
+            <div class="floating-icon fi-3"><i class="fas fa-feather"></i></div>
+            <div class="floating-icon fi-4"><i class="fas fa-heart"></i></div>
+            <div class="floating-icon fi-5"><i class="fas fa-shield-alt"></i></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">🐔 #1 Poultry Health Platform</div>
+            <h1>Smart Poultry
+<span class="gradient-text">Health Management</span></h1>
+            <p>Monitor, diagnose, and protect your flock with AI-powered health tracking. 
+               Reduce mortality rates by up to 60% with early disease detection.</p>
+            <div class="hero-buttons">
+                <a href="#dashboard" class="btn btn-primary">
+                    <i class="fas fa-chart-line"></i> View Dashboard
+                </a>
+                <a href="#disease-checker" class="btn btn-secondary">
+                    <i class="fas fa-stethoscope"></i> Check Symptoms
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>10,000+</h3>
+                    <p>Farmers Trust Us</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50M+</h3>
+                    <p>Birds Protected</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Diagnosis Accuracy</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Vet Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alert Banner -->
+    <div class="alert-banner" id="alertBanner">
+        <div class="alert-content">
+            <i class="fas fa-exclamation-circle"></i>
+            <span><strong>Health Alert:</strong> Avian Influenza outbreak reported in nearby regions. 
+                  <a href="#disease-checker">Check your flock's symptoms now →</a></span>
+            <button class="alert-close" id="alertClose"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section" id="dashboard">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📊 Real-Time Monitoring</span>
+                <h2>Flock Health Dashboard</h2>
+                <p>Monitor your entire flock's health status at a glance</p>
+            </div>
+
+            <!-- Quick Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card healthy">
+                    <div class="stat-icon"><i class="fas fa-heart-pulse"></i></div>
+                    <div class="stat-info">
+                        <h3 id="healthyCount">847</h3>
+                        <p>Healthy Birds</p>
+                        <span class="stat-trend up"><i class="fas fa-arrow-up"></i> 2.5%</span>
+                    </div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-icon"><i class="fas fa-triangle-exclamation"></i></div>
+                    <div class="stat-info">
+                        <h3 id="warningCount">23</h3>
+                        <p>Under Observation</p>
+                        <span class="stat-trend down"><i class="fas fa-arrow-down"></i> 1.2%</span>
+                    </div>
+                </div>
+                <div class="stat-card sick">
+                    <div class="stat-icon"><i class="fas fa-virus"></i></div>
+                    <div class="stat-info">
+                        <h3 id="sickCount">5</h3>
+                        <p>Sick / Infected</p>
+                        <span class="stat-trend down"><i class="fas fa-arrow-down"></i> 0.5%</span>
+                    </div>
+                </div>
+                <div class="stat-card mortality">
+                    <div class="stat-icon"><i class="fas fa-skull-crossbones"></i></div>
+                    <div class="stat-info">
+                        <h3 id="mortalityRate">0.3%</h3>
+                        <p>Mortality Rate</p>
+                        <span class="stat-trend down"><i class="fas fa-arrow-down"></i> Good</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Charts Area -->
+            <div class="dashboard-grid">
+                <div class="chart-card large">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chart-area"></i> Health Trend (Last 30 Days)</h3>
+                        <select id="chartFilter">
+                            <option>Last 7 Days</option>
+                            <option selected>Last 30 Days</option>
+                            <option>Last 90 Days</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="healthTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chart-pie"></i> Flock Distribution</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="flockDistChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-temperature-half"></i> Environment</h3>
+                    </div>
+                    <div class="environment-monitors">
+                        <div class="env-item">
+                            <div class="env-gauge" data-value="72" data-max="100">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="gauge-bg"/>
+                                    <circle cx="50" cy="50" r="40" class="gauge-fill temp"/>
+                                </svg>
+                                <span class="gauge-value">28°C</span>
+                            </div>
+                            <p>Temperature</p>
+                            <span class="env-status good">Optimal</span>
+                        </div>
+                        <div class="env-item">
+                            <div class="env-gauge" data-value="65" data-max="100">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="gauge-bg"/>
+                                    <circle cx="50" cy="50" r="40" class="gauge-fill humidity"/>
+                                </svg>
+                                <span class="gauge-value">65%</span>
+                            </div>
+                            <p>Humidity</p>
+                            <span class="env-status good">Normal</span>
+                        </div>
+                        <div class="env-item">
+                            <div class="env-gauge" data-value="30" data-max="100">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="gauge-bg"/>
+                                    <circle cx="50" cy="50" r="40" class="gauge-fill ammonia"/>
+                                </svg>
+                                <span class="gauge-value">12ppm</span>
+                            </div>
+                            <p>Ammonia</p>
+                            <span class="env-status warning">Monitor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disease Symptom Checker -->
+    <section class="disease-checker-section" id="disease-checker">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🔬 AI-Powered Diagnosis</span>
+                <h2>Disease Symptom Checker</h2>
+                <p>Select the symptoms you observe in your birds for an instant diagnosis</p>
+            </div>
+
+            <div class="checker-layout">
+                <div class="symptom-panel">
+                    <h3><i class="fas fa-list-check"></i> Select Symptoms</h3>
+                    
+                    <div class="symptom-categories">
+                        <div class="symptom-category">
+                            <h4><i class="fas fa-lungs"></i> Respiratory</h4>
+                            <div class="symptom-options">
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="sneezing" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Sneezing / Coughing
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="nasal_discharge" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Nasal Discharge
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="breathing_difficulty" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Difficulty Breathing
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="gasping" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Gasping / Wheezing
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="swollen_sinus" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Swollen Sinuses
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="symptom-category">
+                            <h4><i class="fas fa-droplet"></i> Digestive</h4>
+                            <div class="symptom-options">
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="diarrhea" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Diarrhea
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="bloody_droppings" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Bloody Droppings
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="loss_appetite" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Loss of Appetite
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="green_droppings" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Green/Yellow Droppings
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="symptom-category">
+                            <h4><i class="fas fa-eye"></i> Physical Signs</h4>
+                            <div class="symptom-options">
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="swollen_head" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Swollen Head/Wattles
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="pale_comb" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Pale/Blue Comb
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="ruffled_feathers" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Ruffled Feathers
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="lameness" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Lameness / Leg Issues
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="skin_lesions" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Skin Lesions / Scabs
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="symptom-category">
+                            <h4><i class="fas fa-brain"></i> Behavioral</h4>
+                            <div class="symptom-options">
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="lethargy" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Lethargy / Depression
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="drop_egg" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Drop in Egg Production
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="sudden_death" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Sudden Death
+                                </label>
+                                <label class="symptom-checkbox">
+                                    <input type="checkbox" value="twisted_neck" class="symptom-input">
+                                    <span class="checkmark"></span>
+                                    Twisted Neck / Paralysis
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-full" id="diagnoseBtn">
+                        <i class="fas fa-search-plus"></i> Diagnose Now
+                    </button>
+                </div>
+
+                <div class="result-panel" id="resultPanel">
+                    <div class="result-placeholder">
+                        <i class="fas fa-stethoscope"></i>
+                        <h3>Select Symptoms</h3>
+                        <p>Check the symptoms you observe in your birds, then click "Diagnose Now" to get possible diseases and treatments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vaccination Schedule -->
+    <section class="vaccination-section" id="vaccination">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💉 Prevention First</span>
+                <h2>Vaccination Schedule</h2>
+                <p>Stay on top of your flock's vaccination program</p>
+            </div>
+
+            <div class="vaccination-toolbar">
+                <div class="bird-type-filter">
+                    <button class="filter-btn active" data-type="broiler">🐔 Broiler</button>
+                    <button class="filter-btn" data-type="layer">🥚 Layer</button>
+                    <button class="filter-btn" data-type="breeder">🐣 Breeder</button>
+                </div>
+                <button class="btn btn-primary" id="addVaccineBtn">
+                    <i class="fas fa-plus"></i> Add Vaccination
+                </button>
+            </div>
+
+            <div class="vaccination-timeline" id="vaccinationTimeline">
+                <!-- Broiler Schedule -->
+                <div class="timeline-item" data-type="broiler">
+                    <div class="timeline-marker completed">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h4>Marek's Disease Vaccine</h4>
+                            <span class="badge completed">Completed</span>
+                        </div>
+                        <p><strong>Day 1</strong> - At hatchery, subcutaneous injection</p>
+                        <div class="timeline-meta">
+                            <span><i class="fas fa-calendar"></i> Given: Jan 15, 2025</span>
+                            <span><i class="fas fa-syringe"></i> Route: SC Injection</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-type="broiler">
+                    <div class="timeline-marker completed">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h4>Newcastle Disease (B1 Strain)</h4>
+                            <span class="badge completed">Completed</span>
+                        </div>
+                        <p><strong>Day 7</strong> - Eye drop or drinking water</p>
+                        <div class="timeline-meta">
+                            <span><i class="fas fa-calendar"></i> Given: Jan 22, 2025</span>
+                            <span><i class="fas fa-tint"></i> Route: Eye Drop</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-type="broiler">
+                    <div class="timeline-marker upcoming">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h4>Infectious Bursal Disease (IBD)</h4>
+                            <span class="badge upcoming">Due in 3 days</span>
+                        </div>
+                        <p><strong>Day 14</strong> - Drinking water</p>
+                        <div class="timeline-meta">
+                            <span><i class="fas fa-calendar"></i> Due: Feb 1, 2025</span>
+                            <span><i class="fas fa-glass-water"></i> Route: Drinking Water</span>
+                        </div>
+                        <button class="btn btn-small btn-primary mark-done-btn">
+                            <i class="fas fa-check"></i> Mark as Done
+                        </button>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-type="broiler">
+                    <div class="timeline-marker pending">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h4>Newcastle Disease Booster (LaSota)</h4>
+                            <span class="badge pending">Pending</span>
+                        </div>
+                        <p><strong>Day 21</strong> - Drinking water</p>
+                        <div class="timeline-meta">
+                            <span><i class="fas fa-calendar"></i> Due: Feb 8, 2025</span>
+                            <span><i class="fas fa-glass-water"></i> Route: Drinking Water</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-type="broiler">
+                    <div class="timeline-marker pending">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h4>IBD Booster</h4>
+                            <span class="badge pending">Pending</span>
+                        </div>
+                        <p><strong>Day 28</strong> - Drinking water</p>
+                        <div class="timeline-meta">
+                            <span><i class="fas fa-calendar"></i> Due: Feb 15, 2025</span>
+                            <span><i class="fas fa-glass-water"></i> Route: Drinking Water</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flock Manager -->
+    <section class="flock-section" id="flock">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🐓 Flock Records</span>
+                <h2>Flock Manager</h2>
+                <p>Keep detailed records of all your flocks</p>
+            </div>
+
+            <div class="flock-toolbar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search flock..." id="flockSearch">
+                </div>
+                <button class="btn btn-primary" id="addFlockBtn">
+                    <i class="fas fa-plus"></i> Add New Flock
+                </button>
+            </div>
+
+            <div class="flock-grid" id="flockGrid">
+                <div class="flock-card">
+                    <div class="flock-card-header">
+                        <div class="flock-icon broiler">🐔</div>
+                        <div class="flock-status healthy">Healthy</div>
+                    </div>
+                    <h3>Flock A - Broilers</h3>
+                    <div class="flock-details">
+                        <div class="detail-row">
+                            <span>Breed:</span>
+                            <strong>Cobb 500</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Count:</span>
+                            <strong>500 birds</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Age:</span>
+                            <strong>21 days</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>House:</span>
+                            <strong>Shed #1</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Mortality:</span>
+                            <strong class="text-green">0.4%</strong>
+                        </div>
+                    </div>
+                    <div class="flock-progress">
+                        <label>Growth Progress</label>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%"></div>
+                        </div>
+                        <span>Day 21 of 42</span>
+                    </div>
+                    <div class="flock-actions">
+                        <button class="btn btn-small btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn btn-small btn-outline"><i class="fas fa-notes-medical"></i> Health Log</button>
+                    </div>
+                </div>
+
+                <div class="flock-card">
+                    <div class="flock-card-header">
+                        <div class="flock-icon layer">🥚</div>
+                        <div class="flock-status warning">Monitor</div>
+                    </div>
+                    <h3>Flock B - Layers</h3>
+                    <div class="flock-details">
+                        <div class="detail-row">
+                            <span>Breed:</span>
+                            <strong>Hy-Line Brown</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Count:</span>
+                            <strong>350 birds</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Age:</span>
+                            <strong>28 weeks</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>House:</span>
+                            <strong>Shed #2</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Egg Rate:</span>
+                            <strong class="text-yellow">82%</strong>
+                        </div>
+                    </div>
+                    <div class="flock-progress">
+                        <label>Laying Cycle</label>
+                        <div class="progress-bar">
+                            <div class="progress-fill warning" style="width: 35%"></div>
+                        </div>
+                        <span>Week 28 of 80</span>
+                    </div>
+                    <div class="flock-actions">
+                        <button class="btn btn-small btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn btn-small btn-outline"><i class="fas fa-notes-medical"></i> Health Log</button>
+                    </div>
+                </div>
+
+                <div class="flock-card add-flock-card" id="addFlockCard">
+                    <i class="fas fa-plus-circle"></i>
+                    <h3>Add New Flock</h3>
+                    <p>Register a new batch of birds</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feed Planner -->
+    <section class="feed-section" id="feed">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🌾 Nutrition Management</span>
+                <h2>Feed & Nutrition Planner</h2>
+                <p>Optimize feed for maximum growth and health</p>
+            </div>
+
+            <div class="feed-layout">
+                <div class="feed-calculator">
+                    <h3><i class="fas fa-calculator"></i> Feed Calculator</h3>
+                    <form id="feedForm">
+                        <div class="form-group">
+                            <label>Bird Type</label>
+                            <select id="feedBirdType">
+                                <option value="broiler">Broiler</option>
+                                <option value="layer">Layer</option>
+                                <option value="chick">Chick (0-4 weeks)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of Birds</label>
+                            <input type="number" id="feedBirdCount" value="500" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Age (Days/Weeks)</label>
+                            <input type="number" id="feedBirdAge" value="21" min="1">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-calculator"></i> Calculate Feed
+                        </button>
+                    </form>
+                    <div class="feed-result" id="feedResult">
+                        <h4>Daily Feed Requirement</h4>
+                        <div class="feed-stats">
+                            <div class="feed-stat">
+                                <span class="feed-stat-value" id="dailyFeed">55 kg</span>
+                                <span class="feed-stat-label">Per Day</span>
+                            </div>
+                            <div class="feed-stat">
+                                <span class="feed-stat-value" id="weeklyFeed">385 kg</span>
+                                <span class="feed-stat-label">Per Week</span>
+                            </div>
+                            <div class="feed-stat">
+                                <span class="feed-stat-value" id="feedPerBird">110g</span>
+                                <span class="feed-stat-label">Per Bird/Day</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-guide">
+                    <h3><i class="fas fa-book-open"></i> Feeding Guide</h3>
+                    <div class="feed-phases">
+                        <div class="feed-phase active">
+                            <div class="phase-header">
+                                <h4>🐣 Starter Phase</h4>
+                                <span>Day 1-14</span>
+                            </div>
+                            <div class="phase-content">
+                                <table class="nutrition-table">
+                                    <tr><td>Protein</td><td><strong>22-24%</strong></td></tr>
+                                    <tr><td>Energy</td><td><strong>3000 kcal/kg</strong></td></tr>
+                                    <tr><td>Calcium</td><td><strong>1.0%</strong></td></tr>
+                                    <tr><td>Phosphorus</td><td><strong>0.45%</strong></td></tr>
+                                    <tr><td>Feed/Bird/Day</td><td><strong>25-50g</strong></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="feed-phase">
+                            <div class="phase-header">
+                                <h4>🐔 Grower Phase</h4>
+                                <span>Day 15-28</span>
+                            </div>
+                            <div class="phase-content">
+                                <table class="nutrition-table">
+                                    <tr><td>Protein</td><td><strong>20-22%</strong></td></tr>
+                                    <tr><td>Energy</td><td><strong>3100 kcal/kg</strong></td></tr>
+                                    <tr><td>Calcium</td><td><strong>0.9%</strong></td></tr>
+                                    <tr><td>Phosphorus</td><td><strong>0.40%</strong></td></tr>
+                                    <tr><td>Feed/Bird/Day</td><td><strong>80-120g</strong></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="feed-phase">
+                            <div class="phase-header">
+                                <h4>🍗 Finisher Phase</h4>
+                                <span>Day 29-42</span>
+                            </div>
+                            <div class="phase-content">
+                                <table class="nutrition-table">
+                                    <tr><td>Protein</td><td><strong>18-20%</strong></td></tr>
+                                    <tr><td>Energy</td><td><strong>3200 kcal/kg</strong></td></tr>
+                                    <tr><td>Calcium</td><td><strong>0.85%</strong></td></tr>
+                                    <tr><td>Phosphorus</td><td><strong>0.35%</strong></td></tr>
+                                    <tr><td>Feed/Bird/Day</td><td><strong>150-200g</strong></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Water Requirement -->
+                    <div class="water-info">
+                        <h4><i class="fas fa-glass-water-droplet"></i> Water Requirement</h4>
+                        <p>Birds need approximately <strong>1.5-2x</strong> their feed intake in water daily. 
+                           In hot weather, water consumption increases by <strong>50-70%</strong>.</p>
+                        <div class="water-calc">
+                            <span>Estimated Daily Water: </span>
+                            <strong id="waterReq">82 liters</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Tips Section -->
+    <section class="tips-section" id="tips">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💡 Expert Advice</span>
+                <h2>Poultry Health Tips</h2>
+                <p>Best practices from veterinary experts to keep your flock healthy</p>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-broom"></i></div>
+                    <h3>Biosecurity</h3>
+                    <ul>
+                        <li>Limit farm visitors and use foot baths</li>
+                        <li>Change clothes before entering poultry house</li>
+                        <li>Keep wild birds away from feeders</li>
+                        <li>Quarantine new birds for 2-3 weeks</li>
+                        <li>Clean and disinfect between flocks</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-wind"></i></div>
+                    <h3>Ventilation</h3>
+                    <ul>
+                        <li>Maintain proper air circulation</li>
+                        <li>Keep ammonia levels below 25 ppm</li>
+                        <li>Adjust ventilation based on season</li>
+                        <li>Avoid drafts directly on birds</li>
+                        <li>Monitor CO2 levels regularly</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-glass-water"></i></div>
+                    <h3>Water Quality</h3>
+                    <ul>
+                        <li>Provide clean, fresh water always</li>
+                        <li>Clean waterers daily</li>
+                        <li>Test water quality regularly</li>
+                        <li>pH should be between 6.0-8.0</li>
+                        <li>Add vitamins during stress periods</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-bed"></i></div>
+                    <h3>Litter Management</h3>
+                    <ul>
+                        <li>Keep litter dry (20-25% moisture)</li>
+                        <li>Use 3-4 inches of wood shavings</li>
+                        <li>Remove wet/caked litter promptly</li>
+                        <li>Turn litter regularly</li>
+                        <li>Complete litter change between flocks</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-sun"></i></div>
+                    <h3>Lighting Program</h3>
+                    <ul>
+                        <li>Broilers: 23hrs light, 1hr dark initially</li>
+                        <li>Layers: 16hrs light for peak production</li>
+                        <li>Never decrease light for layers</li>
+                        <li>Use 20-30 lux intensity</li>
+                        <li>Gradual light changes prevent stress</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-shield-virus"></i></div>
+                    <h3>Disease Prevention</h3>
+                    <ul>
+                        <li>Follow strict vaccination schedule</li>
+                        <li>Monitor birds daily for symptoms</li>
+                        <li>Isolate sick birds immediately</li>
+                        <li>Deworm every 3-4 months</li>
+                        <li>Keep accurate health records</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Common Diseases Reference -->
+            <div class="diseases-reference">
+                <h3><i class="fas fa-book-medical"></i> Common Poultry Diseases Quick Reference</h3>
+                <div class="disease-accordion" id="diseaseAccordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span><i class="fas fa-virus text-red"></i> Newcastle Disease (ND)</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="disease-info">
+                                <div class="info-block">
+                                    <h5>Symptoms</h5>
+                                    <p>Respiratory distress, greenish diarrhea, twisted neck, drop in egg production, sudden death</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Prevention</h5>
+                                    <p>Vaccination at Day 7, 21, and boosters. Strict biosecurity measures.</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Treatment</h5>
+                                    <p>No specific treatment. Supportive care with vitamins, electrolytes, and antibiotics for secondary infections.</p>
+                                </div>
+                                <div class="severity-badge high">High Severity</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span><i class="fas fa-virus text-red"></i> Infectious Bursal Disease (Gumboro)</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="disease-info">
+                                <div class="info-block">
+                                    <h5>Symptoms</h5>
+                                    <p>Whitish watery diarrhea, trembling, ruffled feathers, dehydration, immunosuppression</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Prevention</h5>
+                                    <p>Vaccination at Day 14 and 28. Ensure maternal antibody timing.</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Treatment</h5>
+                                    <p>No specific treatment. Provide electrolytes, vitamins, and maintain hydration.</p>
+                                </div>
+                                <div class="severity-badge high">High Severity</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span><i class="fas fa-bug text-orange"></i> Coccidiosis</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="disease-info">
+                                <div class="info-block">
+                                    <h5>Symptoms</h5>
+                                    <p>Bloody droppings, weight loss, decreased feed intake, ruffled feathers, huddling</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Prevention</h5>
+                                    <p>Coccidiostats in feed, good litter management, avoid overcrowding</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Treatment</h5>
+                                    <p>Amprolium (Corid) in water for 5-7 days. Sulfa drugs as alternative.</p>
+                                </div>
+                                <div class="severity-badge medium">Medium Severity</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span><i class="fas fa-bacterium text-yellow"></i> Chronic Respiratory Disease (CRD)</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="disease-info">
+                                <div class="info-block">
+                                    <h5>Symptoms</h5>
+                                    <p>Sneezing, nasal discharge, coughing, reduced feed intake, swollen sinuses</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Prevention</h5>
+                                    <p>Good ventilation, reduce stress, biosecurity, MG-free breeding stock</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Treatment</h5>
+                                    <p>Tylosin, Tilmicosin, or Enrofloxacin. Improve ventilation immediately.</p>
+                                </div>
+                                <div class="severity-badge medium">Medium Severity</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span><i class="fas fa-disease text-orange"></i> Fowl Pox</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="disease-info">
+                                <div class="info-block">
+                                    <h5>Symptoms</h5>
+                                    <p>Warty scabs on comb/wattles (dry form), or plaques in mouth/throat (wet form)</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Prevention</h5>
+                                    <p>Vaccination, mosquito control, wound prevention</p>
+                                </div>
+                                <div class="info-block">
+                                    <h5>Treatment</h5>
+                                    <p>No specific treatment. Iodine on lesions, antibiotics for secondary infections. Usually self-limiting.</p>
+                                </div>
+                                <div class="severity-badge low">Low-Medium Severity</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Vet Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📞 Get Help</span>
+                <h2>Contact a Vet Expert</h2>
+                <p>Need immediate help? Reach out to our veterinary experts</p>
+            </div>
+
+            <div class="contact-layout">
+                <div class="contact-info-panel">
+                    <div class="contact-card">
+                        <i class="fas fa-phone-volume"></i>
+                        <h3>Emergency Hotline</h3>
+                        <p class="phone">1-800-POULTRY</p>
+                        <span>Available 24/7</span>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-video"></i>
+                        <h3>Video Consultation</h3>
+                        <p>Book a live session with a poultry vet</p>
+                        <button class="btn btn-primary btn-small">Book Now</button>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>Community Forum</h3>
+                        <p>Connect with 10,000+ farmers</p>
+                        <button class="btn btn-outline btn-small">Join Forum</button>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Find Nearby Vets</h3>
+                        <p>Locate veterinary services near your farm</p>
+                        <button class="btn btn-outline btn-small">Find Vets</button>
+                    </div>
+                </div>
+
+                <div class="contact-form-panel">
+                    <h3><i class="fas fa-envelope"></i> Send a Query</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" placeholder="Your phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Issue Type</label>
+                            <select required>
+                                <option value="">Select issue type</option>
+                                <option>Disease Outbreak</option>
+                                <option>Vaccination Advice</option>
+                                <option>Feed/Nutrition Issue</option>
+                                <option>Sudden Death Investigation</option>
+                                <option>General Health Checkup</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Describe the Issue</label>
+                            <textarea rows="4" placeholder="Describe what you're observing in your birds..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Photos (optional)</label>
+                            <div class="file-upload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop images or <span>browse</span></p>
+                                <input type="file" multiple accept="image/*">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Submit Query
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-feather-alt"></i>
+                        <span>PoultryHealth <strong>Pro</strong></span>
+                    </div>
+                    <p>Empowering farmers with smart poultry health management tools. 
+                       Reduce mortality, increase productivity, and grow your business.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="#disease-checker">Disease Checker</a></li>
+                        <li><a href="#vaccination">Vaccination</a></li>
+                        <li><a href="#flock">Flock Manager</a></li>
+                        <li><a href="#feed">Feed Planner</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Disease Encyclopedia</a></li>
+                        <li><a href="#">Medication Guide</a></li>
+                        <li><a href="#">Training Videos</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Download App</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Get weekly poultry health tips and alerts</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PoultryHealth Pro. All rights reserved. | Built with ❤️ for Farmers</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Add Flock Modal -->
+    <div class="modal" id="addFlockModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Add New Flock</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="newFlockForm">
+                <div class="form-group">
+                    <label>Flock Name</label>
+                    <input type="text" placeholder="e.g., Flock C - Broilers" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Bird Type</label>
+                        <select required>
+                            <option>Broiler</option>
+                            <option>Layer</option>
+                            <option>Breeder</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Breed</label>
+                        <input type="text" placeholder="e.g., Cobb 500" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Number of Birds</label>
+                        <input type="number" placeholder="500" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Placement</label>
+                        <input type="date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>House/Shed Number</label>
+                    <input type="text" placeholder="e.g., Shed #3">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-plus"></i> Add Flock
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Emergency Modal -->
+    <div class="modal" id="emergencyModal">
+        <div class="modal-content emergency-modal">
+            <div class="modal-header emergency">
+                <h3><i class="fas fa-exclamation-triangle"></i> Emergency Response</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="emergency-content">
+                <div class="emergency-step">
+                    <div class="step-number">1</div>
+                    <div class="step-info">
+                        <h4>Isolate Affected Birds</h4>
+                        <p>Immediately separate sick birds from the healthy flock</p>
+                    </div>
+                </div>
+                <div class="emergency-step">
+                    <div class="step-number">2</div>
+                    <div class="step-info">
+                        <h4>Document Symptoms</h4>
+                        <p>Note all symptoms, number of affected birds, and timeline</p>
+                    </div>
+                </div>
+                <div class="emergency-step">
+                    <div class="step-number">3</div>
+                    <div class="step-info">
+                        <h4>Call Emergency Vet</h4>
+                        <p class="emergency-phone">
+                            <i class="fas fa-phone"></i> 1-800-POULTRY (24/7)
+                        </p>
+                    </div>
+                </div>
+                <div class="emergency-step">
+                    <div class="step-number">4</div>
+                    <div class="step-info">
+                        <h4>Restrict Movement</h4>
+                        <p>No one enters or leaves the farm until vet arrives</p>
+                    </div>
+                </div>
+                <a href="tel:1800768587" class="btn btn-danger btn-full">
+                    <i class="fas fa-phone-volume"></i> Call Emergency Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
