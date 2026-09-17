@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0f14">
+<title>Hotel Serving System — QR ordering for hotels &amp; restaurants</title>
+<meta name="description" content="Guests scan a QR code on the table, order from the menu, the cashier accepts it, the kitchen cooks, waiters serve, and every bill is settled with a printed receipt showing the payment method.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%BD%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark" id="mark">HS</div>
+      <div class="brand-text">
+        <strong id="hotelName">Hotel Serving System</strong>
+        <span id="restName">QR ordering · cashier · kitchen · service · receipts</span>
+      </div>
+    </div>
+    <span class="spacer"></span>
+    <span class="chip dim"><span class="dot live"></span> <span id="healthChip">checking…</span></span>
+  </div>
+</header>
+
+<main class="shell shell-wide" style="padding:22px 0 60px">
+  <section class="panel panel-pad" style="margin-bottom:16px">
+    <div class="grid grid-2" style="align-items:center">
+      <div>
+        <h1 style="font-size:1.9rem;line-height:1.15">From the QR code on the table<br>to a paid, printed receipt.</h1>
+        <p class="muted" style="margin-top:10px;max-width:56ch">
+          Guests scan → browse the menu → send the order. The <strong>cashier</strong> confirms it, the
+          <strong>kitchen</strong> cooks it, the <strong>waiter</strong> serves it, and the bill is settled with the
+          payment method recorded on the receipt — cash, card, mobile money or charged to the room.
+        </p>
+        <div class="row" style="margin-top:14px">
+          <a class="btn btn-primary btn-lg" href="/menu.html?table=T05">📱 Open a table's menu</a>
+          <a class="btn btn-lg" href="/staff.html">🛎 Staff console</a>
+          <a class="btn btn-lg btn-ghost" href="/admin.html">⚙ Admin</a>
+        </div>
+      </div>
+      <div class="grid grid-3">
+        <div class="kpi accent"><div class="k-label">Step 1 · Guest</div><div class="k-value" style="font-size:1.05rem">Scan &amp; order</div><div class="k-sub">No app, no sign-up — the QR link opens the live menu.</div></div>
+        <div class="kpi warn"><div class="k-label">Step 2 · Cashier</div><div class="k-value" style="font-size:1.05rem">Approve &amp; price</div><div class="k-sub">Check the order, edit it, choose pay-now or bill-at-end.</div></div>
+        <div class="kpi"><div class="k-label">Step 3 · Kitchen</div><div class="k-value" style="font-size:1.05rem">Cook &amp; bump</div><div class="k-sub">Kanban tickets per table with per-dish status.</div></div>
+        <div class="kpi good"><div class="k-label">Step 4 · Waiter</div><div class="k-value" style="font-size:1.05rem">Serve</div><div class="k-sub">Ready items are announced instantly to the floor.</div></div>
+        <div class="kpi"><div class="k-label">Step 5 · Payment</div><div class="k-value" style="font-size:1.05rem">Settle the bill</div><div class="k-sub">Cash with change calculation, card, MoMo or room charge.</div></div>
+        <div class="kpi good"><div class="k-label">Step 6 · Receipt</div><div class="k-value" style="font-size:1.05rem">Print &amp; done</div><div class="k-sub">80&nbsp;mm receipt with the payment method and a QR to the order.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid grid-2" style="align-items:start">
+    <section class="panel">
+      <div class="panel-head"><h3>Live floor</h3><span class="spacer"></span><span class="sub" id="floorSub">waiting for data…</span></div>
+      <div class="panel-body" id="floorBody"><div class="empty">Loading the floor…</div></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h3>Try the whole chain in 30 seconds</h3></div>
+      <div class="panel-body">
+        <ol style="margin:0;padding-left:20px;line-height:1.9">
+          <li>Open <a href="/staff.html">the staff console</a> in one tab and sign in as <strong>cashier · PIN 1111</strong>.</li>
+          <li>Open <a href="/menu.html?table=T05">a table menu</a> in another tab (that's what the guest's phone shows) and send an order.</li>
+          <li>Approve it as the cashier — it flies into the kitchen board.</li>
+          <li>Sign in as <strong>chef · 2222</strong> to cook it, then <strong>waiter · 3333</strong> to serve it.</li>
+          <li>Take payment as cashier, choose the method, and print the receipt.</li>
+        </ol>
+        <div class="row" style="margin-top:14px">
+          <button class="btn btn-primary" id="demoOrder">🎲 Simulate a guest order now</button>
+          <a class="btn btn-ghost" href="/admin.html#qr">📱 Table QR codes</a>
+        </div>
+        <p class="tiny muted" style="margin-top:10px">Demo PINs (change them in Admin → Staff): manager 9999 · cashier 1111 · chef 2222 · waiter 3333.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel" style="margin-top:16px">
+    <div class="panel-head"><h3>How it fits a hotel</h3></div>
+    <div class="panel-body grid grid-3">
+      <div>
+        <h3>One system, four roles</h3>
+        <p class="muted tiny">Cashier approves and takes money, kitchen cooks, waiter serves, manager controls the menu, prices, staff PINs, tables and reports.</p>
+      </div>
+      <div>
+        <h3>Built for real service</h3>
+        <p class="muted tiny">Multiple rounds per table, per-dish notes, sold-out (86) items, discounts, bill requests, waiter calls, room-charge payments and printable QR sheets.</p>
+      </div>
+      <div>
+        <h3>Runs anywhere</h3>
+        <p class="muted tiny">Zero dependencies: <span class="mono">node server/server.js</span> is the entire install. Data lives in <span class="mono">data/db.json</span>, money is stored in minor units, and staff actions are PIN-protected.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="/js/core.js"></script>
+<script src="/js/home.js"></script>
+</body>
+</html>

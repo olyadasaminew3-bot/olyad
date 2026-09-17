@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0f14">
+<title>Staff console · Hotel Serving System</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%8E%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+<!-- ------------------------------------------------------------------ login -->
+<div class="login-wrap" id="loginView" hidden>
+  <div class="login-card stack">
+    <div class="panel panel-pad">
+      <div class="brand" style="margin-bottom:14px">
+        <div class="brand-mark" id="loginMark">AB</div>
+        <div class="brand-text">
+          <strong id="loginHotel">Azure Bay Hotel</strong>
+          <span>Staff console · QR serving system</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="pinRole">Sign in as</label>
+        <select class="select" id="pinRole">
+          <option value="cashier">Cashier — accept orders &amp; take payment</option>
+          <option value="chef">Kitchen — cook &amp; bump tickets</option>
+          <option value="waiter">Waiter — serve tables &amp; settle bills</option>
+          <option value="manager">Manager — full control</option>
+        </select>
+      </div>
+
+      <div class="pin-display" id="pinDots"></div>
+      <div class="tiny muted center" id="pinHint" style="margin-bottom:12px">Enter your 4-digit staff PIN</div>
+      <div class="keypad" id="keypad"></div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn btn-primary btn-block btn-lg" id="loginBtn">Sign in</button>
+      </div>
+      <div id="demoPins" class="tiny muted center" style="margin-top:12px" hidden></div>
+    </div>
+    <p class="tiny muted center">
+      Guests scan the QR code on their table → the order lands here.
+      <a href="/">Open the guest menu</a>
+    </p>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------ console -->
+<div id="consoleView" hidden>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" id="brandMark">AB</div>
+        <div class="brand-text">
+          <strong id="brandHotel">Azure Bay Hotel</strong>
+          <span id="brandSub">Staff console</span>
+        </div>
+      </div>
+      <span class="chip" id="whoChip">👤 —</span>
+      <span class="chip dim" id="liveChip"><span class="dot" id="liveDot"></span> connecting…</span>
+      <span class="spacer"></span>
+      <button class="btn btn-sm" id="demoBtn" hidden>🎲 Simulate guest order</button>
+      <a class="btn btn-sm btn-ghost" href="/admin.html" id="adminLink" hidden>⚙ Admin</a>
+      <button class="btn btn-sm btn-ghost" id="refreshBtn">⟳</button>
+      <button class="btn btn-sm btn-ghost" id="logoutBtn">Sign out</button>
+    </div>
+  </header>
+
+  <div class="shell shell-wide" style="padding-top:14px">
+    <nav class="tabs" id="tabs" style="margin-bottom:16px"></nav>
+    <div id="alerts"></div>
+    <main id="view"></main>
+  </div>
+</div>
+
+<script src="/js/core.js"></script>
+<script src="/js/staff.js"></script>
+</body>
+</html>

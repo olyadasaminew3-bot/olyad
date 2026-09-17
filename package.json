@@ -1,0 +1,17 @@
+{
+  "name": "hotel-serving-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QR-code restaurant serving system for hotels: guest menu & ordering, cashier, kitchen display, waiter serving and printed receipts with payment method.",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "test": "node test/api.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}

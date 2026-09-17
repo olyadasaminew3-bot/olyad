@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0f14">
+<title>Admin · Hotel Serving System</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%99%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+<div class="login-wrap" id="gate" hidden>
+  <div class="panel panel-pad login-card">
+    <h2>Staff sign-in required</h2>
+    <p class="muted">Open the <a href="/staff.html">staff console</a> and sign in with your PIN — then come back to administration.</p>
+  </div>
+</div>
+
+<div id="adminView" hidden>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" id="brandMark">AB</div>
+        <div class="brand-text">
+          <strong id="brandHotel">Azure Bay Hotel</strong>
+          <span>Administration</span>
+        </div>
+      </div>
+      <span class="chip" id="whoChip">👤 —</span>
+      <span class="spacer"></span>
+      <a class="btn btn-sm btn-ghost" href="/staff.html">← Staff console</a>
+      <a class="btn btn-sm btn-ghost" href="/" target="_blank">Guest view</a>
+    </div>
+  </header>
+
+  <div class="shell shell-wide" style="padding-top:14px">
+    <nav class="tabs" id="tabs" style="margin-bottom:16px"></nav>
+    <main id="view"></main>
+  </div>
+
+  <section class="print-only" style="padding:0 12mm">
+    <h1 style="font-size:18px;margin-bottom:10px">Scan to order — table QR codes</h1>
+    <div class="qr-grid" id="printSheet"></div>
+  </section>
+</div>
+
+<script src="/js/core.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

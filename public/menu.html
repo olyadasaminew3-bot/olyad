@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2c2118">
+<title>Menu · Azure Bay Hotel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%BD%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="guest">
+
+<header class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="brand" style="margin-bottom:14px">
+      <div class="brand-mark" id="heroMark">AB</div>
+      <div class="brand-text">
+        <strong id="heroHotel">Azure Bay Hotel</strong>
+        <span id="heroRest">The Terrace Restaurant</span>
+      </div>
+    </div>
+    <h1 id="heroTitle">Dine-in menu</h1>
+    <div class="sub" id="heroSub">Scan · choose · order — the kitchen and cashier see it instantly.</div>
+    <div class="hero-meta">
+      <span class="chip" id="tableChip">📍 Table —</span>
+      <span class="chip" id="roundChip" hidden>🧾 Round 1</span>
+      <button class="chip" id="myOrderChip" hidden type="button" style="cursor:pointer">👀 Track my order</button>
+    </div>
+  </div>
+</header>
+
+<nav class="cat-bar">
+  <div class="shell" style="padding-bottom:8px;max-width:1080px">
+    <div class="row">
+      <input class="input" id="search" type="search" placeholder="🔍  Search the menu (e.g. chicken, salad, juice)" style="flex:1 1 220px">
+      <button class="btn btn-ghost btn-sm" id="billBtn" type="button" hidden>💳 Ask for the bill</button>
+      <button class="btn btn-ghost btn-sm" id="waiterBtn" type="button" hidden>🖐 Call the waiter</button>
+    </div>
+  </div>
+  <div class="cat-scroll" id="catBar"></div>
+</nav>
+
+<main class="shell" id="menuHost" style="padding:18px 0 130px">
+  <div class="empty"><span class="icon">🍽️</span>Loading the menu…</div>
+</main>
+
+<div class="cart-bar" id="cartBar" hidden>
+  <div class="cart-bar-inner">
+    <div>
+      <div class="tiny muted" id="cartCount">0 items</div>
+      <div class="cart-total" id="cartTotal">$0.00</div>
+    </div>
+    <span class="spacer"></span>
+    <button class="btn btn-primary btn-lg" id="openCart">Review &amp; order →</button>
+  </div>
+</div>
+
+<!-- cart / checkout sheet -->
+<div class="sheet" id="cartSheet" hidden>
+  <div class="sheet-backdrop" data-close-sheet></div>
+  <div class="sheet-panel">
+    <div class="row">
+      <h2>Your order</h2>
+      <span class="spacer"></span>
+      <button class="btn btn-sm btn-ghost" data-close-sheet>✕ Close</button>
+    </div>
+    <div class="tiny muted" id="sheetTable" style="margin-bottom:10px"></div>
+
+    <div id="cartLines"></div>
+
+    <div class="divider"></div>
+
+    <div class="grid grid-2" style="gap:10px">
+      <div class="field">
+        <label for="guestName">Name for the order (optional)</label>
+        <input class="input" id="guestName" maxlength="40" placeholder="e.g. Amina">
+      </div>
+      <div class="field">
+        <label for="guestCount">Guests at the table</label>
+        <input class="input" id="guestCount" type="number" min="1" max="30" value="2">
+      </div>
+    </div>
+    <div class="field" style="margin-top:10px">
+      <label for="orderNotes">Notes for the kitchen (allergies, timing…)</label>
+      <textarea class="textarea" id="orderNotes" maxlength="200" placeholder="One guest is gluten free…"></textarea>
+    </div>
+
+    <div class="divider"></div>
+    <div id="billPreview"></div>
+
+    <button class="btn btn-primary btn-lg btn-block" id="sendOrder" style="margin-top:14px">
+      Send order to the cashier →
+    </button>
+    <p class="tiny muted center" style="margin-top:8px">
+      The cashier confirms your order, the kitchen cooks it and your waiter serves it.
+      You pay at the end — cash, card, mobile money or to your room.
+    </p>
+  </div>
+</div>
+
+<!-- table picker (only when the QR code was not used) -->
+<div class="sheet" id="tableSheet" hidden>
+  <div class="sheet-backdrop"></div>
+  <div class="sheet-panel">
+    <h2>Which table are you at?</h2>
+    <p class="tiny muted">No table in the link — pick one to continue (or scan the QR code on your table).</p>
+    <div class="floor-grid" id="tablePicker" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<script src="/js/core.js"></script>
+<script src="/js/guest.js"></script>
+</body>
+</html>
