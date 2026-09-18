@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoultryHealth Pro - Smart Poultry Health Management</title>
+    <title>Doro Smart Poultry System | dorosmart.com</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/doro.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -23,19 +24,21 @@
         <div class="nav-container">
             <div class="logo">
                 <i class="fas fa-feather-alt"></i>
-                <span>PoultryHealth <strong>Pro</strong></span>
+                <span>Doro <strong>Smart</strong></span>
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#disease-checker">Disease Checker</a></li>
+                <li><a href="#plc">PLC House</a></li>
+                <li><a href="#disease-checker">Health</a></li>
                 <li><a href="#vaccination">Vaccination</a></li>
-                <li><a href="#flock">Flock Manager</a></li>
-                <li><a href="#feed">Feed Planner</a></li>
-                <li><a href="#tips">Health Tips</a></li>
+                <li><a href="#flock">Flock</a></li>
+                <li><a href="#feed">Feed & Water</a></li>
+                <li><a href="#pricing">Plans</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
+                <div class="user-chip" id="userChip"></div>
                 <button class="btn-emergency" id="emergencyBtn">
                     <i class="fas fa-exclamation-triangle"></i> Emergency
                 </button>
@@ -48,6 +51,8 @@
         </div>
     </nav>
 
+    <div class="farm-banner" id="farmBanner"></div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg-animation">
@@ -58,17 +63,16 @@
             <div class="floating-icon fi-5"><i class="fas fa-shield-alt"></i></div>
         </div>
         <div class="hero-content">
-            <div class="hero-badge">🐔 #1 Poultry Health Platform</div>
-            <h1>Smart Poultry
-<span class="gradient-text">Health Management</span></h1>
-            <p>Monitor, diagnose, and protect your flock with AI-powered health tracking. 
-               Reduce mortality rates by up to 60% with early disease detection.</p>
+            <div class="hero-badge">🐔 Doro Smart Poultry System · dorosmart.com</div>
+            <h1>Smart poultry farm
+<span class="gradient-text">feeding, water, climate & health</span></h1>
+            <p>Log in, register your farm, connect your house PLC with a QR code, and run feeders, drinkers, temperature and healthcare — Free or Paid in Ethiopian Birr.</p>
             <div class="hero-buttons">
-                <a href="#dashboard" class="btn btn-primary">
-                    <i class="fas fa-chart-line"></i> View Dashboard
+                <a href="#plc" class="btn btn-primary">
+                    <i class="fas fa-industry"></i> PLC House Dashboard
                 </a>
-                <a href="#disease-checker" class="btn btn-secondary">
-                    <i class="fas fa-stethoscope"></i> Check Symptoms
+                <a href="#pricing" class="btn btn-secondary">
+                    <i class="fas fa-coins"></i> Free & Paid (ETB)
                 </a>
             </div>
             <div class="hero-stats">
@@ -209,6 +213,35 @@
                             <span class="env-status warning">Monitor</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLC House -->
+    <section class="dashboard-section" id="plc">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🏭 Farm PLC</span>
+                <h2>House PLC dashboard</h2>
+                <p>Scan the QR with your controller phone to pair this farm. Paid plan sends live commands to feeders, drinkers, heaters and fans.</p>
+            </div>
+            <div class="plc-layout">
+                <div class="plc-house">
+                    <h3><i class="fas fa-microchip"></i> Live house telemetry</h3>
+                    <div class="plc-metrics" id="plcMetrics"></div>
+                    <div class="plc-controls" id="plcControls"></div>
+                    <div class="plc-controls" style="margin-top:12px">
+                        <button class="on" id="dispenseFeed"><i class="fas fa-wheat-awn"></i> Pulse feeder</button>
+                        <button class="on" id="refillWater"><i class="fas fa-droplet"></i> Open water line</button>
+                    </div>
+                </div>
+                <div class="qr-panel">
+                    <h3>Connect PLC with QR</h3>
+                    <p>Point the farm PLC / tablet camera at this code to bind <strong>dorosmart.com</strong>.</p>
+                    <img id="plcQr" alt="PLC QR code" width="220" height="220">
+                    <p>Pairing token: <code id="plcToken">—</code></p>
+                    <p class="plan-hint">Free: view only. Paid: write commands to the PLC.</p>
                 </div>
             </div>
         </div>
@@ -911,6 +944,54 @@
         </div>
     </section>
 
+    <!-- Pricing ETB -->
+    <section class="tips-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🇪🇹 Pay in ETB</span>
+                <h2>Free and Paid plans</h2>
+                <p>Pay directly to our Commercial Bank of Ethiopia or Telebirr accounts. No card processor.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Free</h3>
+                    <div class="amt">0 <small>ETB</small></div>
+                    <ul>
+                        <li>✓ Farm profile & login</li>
+                        <li>✓ Feed calculator & water estimate</li>
+                        <li>✓ Disease checker & vaccination log</li>
+                        <li>✓ View PLC telemetry</li>
+                        <li>— Live feeder / drinker / climate commands</li>
+                    </ul>
+                </div>
+                <div class="price-card featured">
+                    <h3>Paid · Farm Pro</h3>
+                    <div class="amt">1,499 <small>ETB / month</small></div>
+                    <ul>
+                        <li>✓ Everything in Free</li>
+                        <li>✓ QR-paired PLC write control</li>
+                        <li>✓ Auto feed, water, heater & fan</li>
+                        <li>✓ Health alerts & extra houses</li>
+                    </ul>
+                    <div class="pay-box">
+                        <p><strong>Commercial Bank of Ethiopia (CBE)</strong><br>Account: <code>1000707418757</code></p>
+                        <p><strong>Telebirr</strong><br>Mobile: <code>+251904743453</code></p>
+                        <p>Amount: <strong>1,499 ETB</strong> · Name the transfer with your login email.</p>
+                        <div class="pay-actions">
+                            <button class="btn btn-primary" type="button" id="payCbeBtn">Pay via CBE</button>
+                            <button class="btn btn-secondary" type="button" id="payTeleBtn">Pay via Telebirr</button>
+                        </div>
+                        <div class="form-group" style="margin-top:12px">
+                            <label>Payment reference</label>
+                            <input type="text" id="payRef" placeholder="CBE or Telebirr receipt / SMS ref">
+                        </div>
+                        <button class="btn btn-primary btn-full upgrade-cta" type="button" id="confirmPayBtn">Confirm payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact / Vet Section -->
     <section class="contact-section" id="contact">
         <div class="container">
@@ -1005,10 +1086,9 @@
                 <div class="footer-col">
                     <div class="footer-logo">
                         <i class="fas fa-feather-alt"></i>
-                        <span>PoultryHealth <strong>Pro</strong></span>
+                        <span>Doro <strong>Smart</strong></span>
                     </div>
-                    <p>Empowering farmers with smart poultry health management tools. 
-                       Reduce mortality, increase productivity, and grow your business.</p>
+                    <p>Doro Smart Poultry System — feeding, water, temperature and healthcare for Ethiopian farms. Website: dorosmart.com</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1046,7 +1126,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 PoultryHealth Pro. All rights reserved. | Built with ❤️ for Farmers</p>
+                <p>&copy; 2026 Doro Smart Poultry System · dorosmart.com · CBE 1000707418757 · Telebirr +251904743453</p>
             </div>
         </div>
     </footer>
@@ -1152,5 +1232,6 @@
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/doro.js"></script>
 </body>
 </html>
