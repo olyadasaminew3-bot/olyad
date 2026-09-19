@@ -184,6 +184,32 @@ check('catalog has gold and bitcoin', DataMod.SYMBOLS.some(s => s.id === 'XAUUSD
 check('every catalog symbol maps to at least one provider',
   DataMod.SYMBOLS.every(s => DataMod.PROVIDER_ORDER.some(p => DataMod.PROVIDERS[p].supports(s))));
 
+/* ---------- 14. invariants across many generated markets ---------- */
+{
+  let stopOk = true, targetOk = true, sideOk = true, rOk = true, confOk = true, planOk = true;
+  for (let k = 0; k < 24; k++) {
+    const cs = E.syntheticCandles(`INV-${k}`, 200 + k * 7, 3600000, 50 + k * 130, 0.004 + (k % 5) * 0.003);
+    const an = E.analyze(cs, { symbol: `M${k}`, interval: '1h', account: { balance: 1000, riskPct: 1 } });
+    if (!an.ok || an.direction === 'NEUTRAL') continue;
+    const long = an.direction === 'LONG';
+    if (long ? an.stop.price >= an.entry.price : an.stop.price <= an.entry.price) stopOk = false;
+    if (long ? an.stop.price >= an.price : an.stop.price <= an.price) stopOk = false;   // stop never "behind" the market
+    if (!an.targets.every((t) => (long ? t.price > an.price : t.price < an.price))) targetOk = false;
+    if (!an.targets.every((t) => (long ? t.price > an.entry.price : t.price < an.entry.price))) targetOk = false;
+    if (!an.targets.every((t, i) => i === 0 || (long ? t.price > an.targets[i - 1].price : t.price < an.targets[i - 1].price))) sideOk = false;
+    if (!an.targets.every((t, i) => i === 0 || t.r > an.targets[i - 1].r)) rOk = false;
+    if (!(an.confidence >= 0 && an.confidence <= 95)) confOk = false;
+    if (!an.plan.length || !an.headline || !an.summary) planOk = false;
+    if (an.sizing.riskAmount !== 10) confOk = false;
+  }
+  check('invariant: stop always sits on the losing side of entry and price', stopOk);
+  check('invariant: targets always sit beyond entry and the live price', targetOk);
+  check('invariant: targets are ordered away from entry', sideOk);
+  check('invariant: R multiples increase with each target', rOk);
+  check('invariant: confidence bounded and 1% of 1000 = 10 risked', confOk);
+  check('invariant: every plan has a headline, summary and steps', planOk);
+}
+
 console.log('\nDoro Trade AI — engine tests\n' + results.join('\n'));
 console.log(`\n${pass} passed, ${fail} failed\n`);
 process.exit(fail ? 1 : 0);

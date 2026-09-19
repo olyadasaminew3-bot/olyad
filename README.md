@@ -66,8 +66,8 @@ return `[{t,o,h,l,c,v}]`. If no feed is reachable the page labels the chart
 No dependencies required (Node 18+):
 
 ```bash
-npm test              # engine + feed adapters + page smoke test + UI checks
-node tools/test-engine.mjs    # 58 checks: indicator maths, trade plans, bot replies
+npm test              # 128 checks: engine + feed adapters + page smoke test + UI checks
+node tools/test-engine.mjs    # 64 checks: indicator maths, trade plans, invariants, bot replies
 node tools/test-feed.mjs      # 32 checks: exchange adapters, fallback order, demo mode
 node tools/test-browser.mjs   # 32 checks: the page logic runs end-to-end in a fake DOM
 node tools/check-ui.mjs       # static cross-check of HTML ids, CSS classes, script order

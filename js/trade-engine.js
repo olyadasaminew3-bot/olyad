@@ -830,6 +830,13 @@
         .filter((p) => (isLong ? p > entryPrice + stopDistance * 0.55 : p < entryPrice - stopDistance * 0.55))
         .sort((a, b) => (isLong ? a - b : b - a));
 
+      /* A limit/pullback entry sits away from the market, so a target can end up
+         "behind" the live price and count as instantly filled. Every target must
+         therefore also clear the current market price by a little. */
+      const minTarget = isLong
+        ? Math.max(entryPrice + stopDistance * 0.55, price + A * 0.25)
+        : Math.min(entryPrice - stopDistance * 0.55, price - A * 0.25);
+
       const dedupe = [];
       for (const p of pool) {
         if (!dedupe.some((d) => Math.abs(d - p) < stopDistance * 0.35)) dedupe.push(p);
@@ -839,9 +846,11 @@
       let minR = 0;
       for (let idx = 0; idx < 3; idx++) {
         const needR = Math.max(floors[idx] - 0.25, minR + 0.45);
-        let cand = dedupe.find((p) => Math.abs(p - entryPrice) / stopDistance >= needR);
+        let cand = dedupe.find((p) =>
+          Math.abs(p - entryPrice) / stopDistance >= needR && (isLong ? p >= minTarget : p <= minTarget));
         if (!isNum(cand)) {
-          cand = entryPrice + (isLong ? 1 : -1) * stopDistance * Math.max(floors[idx], minR + 0.8);
+          const projected = entryPrice + (isLong ? 1 : -1) * stopDistance * Math.max(floors[idx], minR + 0.8);
+          cand = isLong ? Math.max(projected, minTarget) : Math.min(projected, minTarget);
         }
         picks.push(cand);
         minR = Math.abs(cand - entryPrice) / stopDistance;
