@@ -1,0 +1,15 @@
+{
+  "name": "doro-smart-poultry",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Doro Smart Poultry System — static site + Doro Trade AI analysis engine",
+  "scripts": {
+    "test": "node tools/test-engine.mjs && node tools/test-feed.mjs && node tools/test-browser.mjs && node tools/check-ui.mjs",
+    "test:engine": "node tools/test-engine.mjs",
+    "test:feed": "node tools/test-feed.mjs",
+    "test:ui": "node tools/check-ui.mjs",
+    "test:page": "node tools/test-browser.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "engines": { "node": ">=18" }
+}

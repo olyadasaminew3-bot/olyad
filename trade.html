@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doro Trade AI — entry, stop loss, take profit &amp; trade lines</title>
+    <meta name="description" content="Doro Trade AI analyses live crypto and gold charts and gives you a complete trade plan: entry zone, stop loss, three take-profit levels, R:R, position size and chart trade lines.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/trade.css">
+</head>
+<body>
+
+<!-- ============ Top bar ============ -->
+<header class="ta-topbar">
+    <div class="ta-brand">
+        <div class="mark"><i class="fas fa-chart-line"></i></div>
+        <div>
+            Doro Trade AI
+            <small>entry · stop loss · take profit · trade lines</small>
+        </div>
+    </div>
+    <nav class="ta-nav">
+        <a href="index.html"><i class="fas fa-house"></i> Farm app</a>
+        <a href="#terminal">Terminal</a>
+        <a href="#journal">Journal</a>
+        <a href="#how">How it works</a>
+        <a href="#terminal" class="cta"><i class="fas fa-bolt"></i> Analyse now</a>
+    </nav>
+</header>
+
+<div class="ta-wrap">
+
+    <!-- ============ Hero ============ -->
+    <section class="ta-hero">
+        <h1>Trading bot that hands you the <span>entry, stop loss, take profit and trade lines</span></h1>
+        <p>
+            Doro Trade AI reads live candles from public exchange feeds, runs 13 weighted
+            market signals (trend, momentum, structure, volatility, volume), then prints one
+            complete plan: where to enter, where the idea dies, three scaled targets, the R:R,
+            the exact position size for your account and the lines to draw on your chart.
+        </p>
+        <div class="ta-hero-badges">
+            <span><i class="fas fa-bolt"></i> Live public data — no API key</span>
+            <span><i class="fas fa-calculator"></i> R:R &amp; position sizing shown</span>
+            <span><i class="fas fa-shield-halved"></i> Says "no trade" when there is no edge</span>
+            <span><i class="fas fa-robot"></i> Ask-the-bot explanations</span>
+        </div>
+    </section>
+
+    <!-- ============ Status ============ -->
+    <div class="ta-status" id="statusBar">Loading market data…</div>
+
+    <!-- ============ Controls ============ -->
+    <section class="ta-card" id="terminal">
+        <div class="ta-card-head">
+            <h3><i class="fas fa-sliders"></i> Analysis console</h3>
+            <span class="ta-muted small">Press <b>⌘/Ctrl + Enter</b> to re-run · or “Analyse”</span>
+        </div>
+        <div class="ta-console">
+            <div class="ta-field">
+                <label for="symbolSelect">Market</label>
+                <select id="symbolSelect" class="ta-select"></select>
+            </div>
+            <div class="ta-field">
+                <label>Timeframe</label>
+                <div class="ta-seg" id="intervalGroup">
+                    <button data-iv="5m">5m</button>
+                    <button data-iv="15m">15m</button>
+                    <button data-iv="1h" class="active">1h</button>
+                    <button data-iv="4h">4h</button>
+                    <button data-iv="1d">1d</button>
+                </div>
+            </div>
+            <div class="ta-field">
+                <label for="balanceInput">Account balance</label>
+                <input id="balanceInput" class="ta-input" type="number" min="1" step="50" value="1000">
+            </div>
+            <div class="ta-field">
+                <label for="riskInput">Risk per trade (%)</label>
+                <input id="riskInput" class="ta-input" type="number" min="0.1" max="20" step="0.1" value="1">
+            </div>
+            <div class="ta-field">
+                <label>Quick risk</label>
+                <div class="ta-seg" id="riskChips">
+                    <button data-r="0.5">0.5%</button>
+                    <button data-r="1">1%</button>
+                    <button data-r="2">2%</button>
+                    <button data-r="3">3%</button>
+                </div>
+            </div>
+            <div class="ta-field">
+                <label>&nbsp;</label>
+                <button class="ta-btn primary" id="runBtn"><i class="fas fa-bolt"></i> Analyse</button>
+            </div>
+            <div class="ta-field">
+                <label for="autoEvery">Auto refresh</label>
+                <div style="display:flex;gap:6px">
+                    <select id="autoEvery" class="ta-select small" style="flex:1">
+                        <option value="30">every 30s</option>
+                        <option value="60" selected>every 60s</option>
+                        <option value="120">every 2 min</option>
+                        <option value="300">every 5 min</option>
+                    </select>
+                    <button class="ta-btn small" id="autoBtn"><i class="fas fa-rotate"></i> <span id="autoCount">off</span></button>
+                </div>
+            </div>
+        </div>
+
+        <details class="ta-advanced">
+            <summary><i class="fas fa-gear"></i> Advanced: data source, chart window, custom feed</summary>
+            <div class="ta-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+                <div class="ta-field">
+                    <label for="providerSelect">Exchange feed</label>
+                    <select id="providerSelect" class="ta-select"></select>
+                </div>
+                <div class="ta-field">
+                    <label for="windowSelect">Candles on chart</label>
+                    <select id="windowSelect" class="ta-select">
+                        <option value="80">80</option>
+                        <option value="130" selected>130</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                    </select>
+                </div>
+                <div class="ta-field">
+                    <label for="customUrlInput">Custom JSON feed (optional)</label>
+                    <input id="customUrlInput" class="ta-input small" type="url" placeholder="https://my-proxy/candles">
+                </div>
+                <div class="ta-field">
+                    <label>&nbsp;</label>
+                    <button class="ta-btn small" id="saveAdvanced"><i class="fas fa-floppy-disk"></i> Save feed settings</button>
+                </div>
+            </div>
+            <p class="ta-muted small" style="margin-top:8px">
+                The custom feed is called with <code>?symbol=…&amp;interval=…</code> and must return
+                <code>[{t,o,h,l,c,v}]</code> (or the same array-shape Binance uses). Useful for stocks, forex
+                or any broker data you already have.
+            </p>
+        </details>
+    </section>
+
+    <!-- ============ Verdict ============ -->
+    <section class="ta-card" id="verdictCard" style="margin-top:16px">
+        <p class="ta-muted">Running the first analysis…</p>
+    </section>
+
+    <!-- ============ Chart ============ -->
+    <section class="ta-card ta-chart-card" style="margin-top:16px">
+        <div class="ta-chart-head">
+            <div class="ta-chart-title">📈 <span id="chartTitle">chart</span> — entry / stop / targets on live candles</div>
+            <div class="ta-chart-tools">
+                <button id="tEma" class="active">EMA</button>
+                <button id="tLevels" class="active">S/R</button>
+                <button id="tTrade" class="active">Trade lines</button>
+                <button id="tTrend" class="active">Trend line</button>
+                <button id="tVol" class="active">Volume</button>
+                <button id="zoomIn">＋</button>
+                <button id="zoomOut">－</button>
+                <button id="zoomReset">Reset</button>
+            </div>
+        </div>
+        <div class="ta-chart-box">
+            <canvas id="chart"></canvas>
+            <div class="ta-loader hidden" id="chartLoader"><i class="fas fa-spinner fa-spin"></i> fetching candles…</div>
+        </div>
+        <div class="ta-chart-legend">
+            <span><i style="background:#fbbf24"></i>Entry line</span>
+            <span><i style="background:#f87171"></i>Stop-loss line</span>
+            <span><i style="background:#34d399"></i>Take-profit lines (TP1–TP3)</span>
+            <span><i style="background:#22d3ee"></i>Trend line</span>
+            <span><i style="background:#38bdf8"></i>EMA20</span>
+            <span><i style="background:#a78bfa"></i>EMA50</span>
+            <span class="ta-muted">Scroll to zoom · drag to pan · hover for the R-multiple at any price</span>
+        </div>
+    </section>
+
+    <!-- ============ Plan + lines ============ -->
+    <div class="ta-grid two" style="margin-top:16px">
+        <section class="ta-card" id="planCard"></section>
+        <section class="ta-card">
+            <div class="ta-card-head"><h3><i class="fas fa-ruler-combined"></i> Trade lines</h3></div>
+            <div id="linesCard"></div>
+        </section>
+    </div>
+
+    <!-- ============ Signals + levels ============ -->
+    <div class="ta-grid two" style="margin-top:16px">
+        <section class="ta-card">
+            <div class="ta-card-head"><h3><i class="fas fa-wave-square"></i> Signal breakdown (weighted)</h3></div>
+            <div id="signalsCard"></div>
+        </section>
+        <section class="ta-card">
+            <div class="ta-card-head"><h3><i class="fas fa-layer-group"></i> Key levels</h3></div>
+            <div id="levelsCard"></div>
+        </section>
+    </div>
+
+    <!-- ============ Narrative ============ -->
+    <section class="ta-card" style="margin-top:16px">
+        <div class="ta-card-head"><h3><i class="fas fa-clipboard-check"></i> Why this trade — and what could go wrong</h3></div>
+        <div id="narrativeCard"></div>
+    </section>
+
+    <!-- ============ Chat + alerts ============ -->
+    <div class="ta-grid two" style="margin-top:16px">
+        <section class="ta-card" id="chatSection">
+            <div class="ta-card-head">
+                <h3><i class="fas fa-robot"></i> Ask the trade bot</h3>
+                <button class="ta-btn small" id="chatClear"><i class="fas fa-eraser"></i> Clear</button>
+            </div>
+            <div class="ta-chat-log" id="chatLog"></div>
+            <div class="ta-chat-input">
+                <input id="chatInput" class="ta-input" type="text" placeholder="e.g. where is my entry, stop loss, risk 2% of 5000, analyse ETH on 4h…">
+                <button class="ta-btn primary" id="chatSend"><i class="fas fa-paper-plane"></i> Send</button>
+            </div>
+            <div class="ta-chips" id="chatChips">
+                <button>analyze</button>
+                <button>where is my entry</button>
+                <button>stop loss</button>
+                <button>targets</button>
+                <button>trade line</button>
+                <button>risk 1% of 5000</button>
+                <button>best trade</button>
+                <button>what could go wrong</button>
+                <button>market read</button>
+                <button>how do I manage it</button>
+            </div>
+        </section>
+
+        <section class="ta-card">
+            <div class="ta-card-head">
+                <h3><i class="fas fa-bell"></i> Alerts</h3>
+                <button class="ta-btn small" id="alertToggle"><i class="fas fa-toggle-off"></i> Enable alerts</button>
+            </div>
+            <p class="ta-muted small">
+                When alerts are on, the page checks the live price on every cycle and warns you when
+                price reaches your <b>entry</b>, crosses your <b>stop line</b>, hits <b>TP1/TP2/TP3</b>, or when a
+                logged journal trade is stopped out. Browser notifications are used if you allow them.
+            </p>
+            <ul class="ta-steps" style="margin-top:10px">
+                <li>Entry reached → prepare the order, confirm the trigger</li>
+                <li>TP1 reached → take 50% off, move the stop to break-even</li>
+                <li>Stop crossed → the idea is dead, journal it as −1R</li>
+                <li>Journal trade auto-closes at −1R so your statistics stay honest</li>
+            </ul>
+            <div class="ta-actions">
+                <button class="ta-btn small" id="checkAlertsBtn"><i class="fas fa-satellite-dish"></i> Check alerts now</button>
+                <span class="ta-muted small">Alert history appears as toasts in the corner.</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ Watchlist ============ -->
+    <section class="ta-card" style="margin-top:16px">
+        <div class="ta-card-head">
+            <h3><i class="fas fa-radar"></i> Multi-market scanner</h3>
+            <button class="ta-btn primary small" id="scanBtn"><i class="fas fa-radar"></i> Scan watchlist</button>
+        </div>
+        <div id="watchCard"></div>
+    </section>
+
+    <!-- ============ Journal ============ -->
+    <section class="ta-card" id="journal" style="margin-top:16px">
+        <div class="ta-card-head">
+            <h3><i class="fas fa-book"></i> Trade journal &amp; performance</h3>
+            <span class="ta-muted small">Everything is stored in your browser only</span>
+        </div>
+        <div id="journalCard"></div>
+    </section>
+
+    <!-- ============ How it works ============ -->
+    <section class="ta-card ta-education" id="how" style="margin-top:16px">
+        <div class="ta-card-head"><h3><i class="fas fa-graduation-cap"></i> How the bot builds the plan</h3></div>
+        <p>
+            Every signal is scored from −1 to +1 with a fixed weight; the weighted score decides
+            direction, and the <em>agreement</em> between signals (plus trend quality, volume, higher-timeframe
+            alignment and the achievable R:R) decides the confidence grade.
+        </p>
+        <ul>
+            <li><b>Trend &amp; structure (weight 1.6 / 1.1)</b> — EMA20/50/200 stack and higher-high / higher-low swing structure.</li>
+            <li><b>Momentum (1.0–1.2)</b> — RSI(14), MACD histogram cross, ADX with +DI/−DI as the trend-quality filter.</li>
+            <li><b>Location (0.7–0.9)</b> — distance from EMA20 in ATR, Bollinger position/width, VWAP side, room to the next level.</li>
+            <li><b>Confirmation (0.6–1.4)</b> — volume vs the 20-bar average, candlestick pattern, RSI divergence, higher-timeframe bias.</li>
+            <li><b>Stop loss</b> — beyond the most recent swing + 0.35 ATR buffer, floored at 0.8 ATR and capped at 2.6 ATR so noise cannot clip it.</li>
+            <li><b>Targets</b> — real swing levels and pivots first (≥1R, ≥1.8R, ≥2.6R), ATR extensions if structure is thin; scale out 50/30/20%.</li>
+            <li><b>Size</b> — <code>position = (balance × risk%) ÷ stop distance</code>, with a leverage warning when notional exceeds the account.</li>
+            <li><b>Refusal to trade</b> — mid-range chop, tiny volatility or a balanced score returns “no trade” and the reason.</li>
+        </ul>
+        <h3 style="margin-top:16px">Data &amp; reliability</h3>
+        <p id="data">
+            Candles come from public exchange endpoints (Binance, Bybit, OKX, Coinbase, Kraken, Bitstamp),
+            tried in order until one answers — no API key, nothing to configure, and the static page works
+            on any host. If your network blocks all of them, the page clearly labels the chart
+            <b>DEMO DATA</b> and keeps working so you can still see the workflow. Gold is tracked through
+            PAXG (a gold-backed token) as a close proxy for XAU/USD. For other markets (stocks, forex,
+            futures) point the <b>custom JSON feed</b> box at your own endpoint.
+        </p>
+        <div class="ta-disclaimer">
+            <b>Risk warning:</b> this is an educational analysis tool, not financial advice. Signals,
+            entries, stops and targets are calculated from historical price action and can be wrong.
+            Never risk money you cannot afford to lose, never trade without a stop, and test any idea on
+            paper before using real funds.
+        </div>
+    </section>
+</div>
+
+<footer class="ta-footer">
+    Doro Trade AI · part of the <a href="index.html">Doro Smart</a> farm platform ·
+    engine v1.0 · data &amp; analysis run entirely in your browser.
+</footer>
+
+<script src="js/trade-engine.js"></script>
+<script src="js/trade-data.js"></script>
+<script src="js/trade-chart.js"></script>
+<script src="js/trade-bot.js"></script>
+<script src="js/trade-ai.js"></script>
+</body>
+</html>
